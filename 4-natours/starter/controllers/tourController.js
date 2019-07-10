@@ -13,16 +13,24 @@ exports.getAllTours = (req, res) => {
   });
 };
 
-exports.createTour = (req, res) => {
-  // const newTour = new Tour({});
-  // newTour.save();
+exports.createTour = async (req, res) => {
+  try {
+    // const newTour = new Tour({});
+    // newTour.save();
 
-  res.status(201).json({
-    status: 'success'
-    // data: {
-    //   tour: newTour
-    // }
-  });
+    const newTour = await Tour.create(req.body);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: newTour
+      }
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data send!'
+    });
+  }
 };
 
 exports.getTour = (req, res) => {
