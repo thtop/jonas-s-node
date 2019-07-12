@@ -141,9 +141,9 @@ exports.getTourStats = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(400).json({
+    res.status(404).json({
       status: 'fail',
       message: error
     });
   }
-}
+};
